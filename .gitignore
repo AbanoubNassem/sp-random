@@ -1,3 +1,7 @@
 .next
 .yalc
 node_modules
+.vs
+.idea
+.DS_Store
+game.db

@@ -1,24 +1,35 @@
-import React , {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 
 interface Props {
     label: string;
     type?: string;
     step?: number;
-    value?: any
+    value: any
+    min?: number;
+    max?: number;
+    onIncrement: (no: number) => void
+    onDecrement: (no: number) => void
 }
 
-export default function IncrementInput({label, type, step}: Props) {
-    const [value, setValue] = useState(0);
+export default function IncrementInput({label, type, step, value, onIncrement, onDecrement, min, max}: Props) {
 
     const increaseValue = () => {
-        setValue(prevValue => prevValue + (step ?? 1));
+        const v = value + (step ?? 1);
+        onIncrement(Math.min(max ?? v, v));
     };
 
     const decreaseValue = () => {
-        setValue(prevValue => prevValue - (step ?? 1));
+        const v = value - (step ?? 1);
+        onIncrement(Math.max(min ?? v, v));
     };
 
-
+    const setValue = (v: number) => {
+        if(v > (max ?? v))
+            v = max ?? v;
+        if(v < (min ?? v))
+            v = min ?? v;
+        v > value ? onIncrement(v) : onDecrement(v);
+    }
     return <div
         className="col-span-1 flex flex-row justify-between items-center p-1 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
@@ -37,8 +48,9 @@ export default function IncrementInput({label, type, step}: Props) {
 
 
         <input type={type ?? "number"} step={1} id="first_name"
+               onChange={(ev) => setValue(+ev.target.value)}
                className="bg-gray-50 text-center border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-20 h-8 p-1 dark:bg-black dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
-               placeholder={label} required defaultValue={value ?? 0}/>
+               placeholder={label} required value={value ?? 0}/>
 
 
         <button

@@ -9,9 +9,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "isolatedModules": false,
+    "esModuleInterop": true,
     "noEmit": false,
     "allowJs": false
   },
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

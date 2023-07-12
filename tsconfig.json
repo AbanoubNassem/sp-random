@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "esnext",
     "module": "esnext",
     "jsx": "preserve",
     "strict": true,
@@ -17,9 +17,16 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "strictPropertyInitialization": false,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "baseUrl": ".",
-    "typeRoots": ["node_modules/@types", "./typings"],
+    "typeRoots": [
+      "node_modules/@types",
+      "./typings"
+    ],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
@@ -27,11 +34,13 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "include": ["./pages/**/*", "./src/**/*", "./ui/**/*", "types.ts"],
-  "exclude": ["node_modules"],
-  "plugins": [
-    {
-      "name": "next"
-    }
+  "include": [
+    "./pages/**/*",
+    "./src/**/*",
+    "./ui/**/*",
+    "types.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
