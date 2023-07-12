@@ -27,7 +27,6 @@ export default function Home({ topUsersJson }: Props) {
 
   useEffect(() => {
     refetchUser();
-    console.log(topUsersJson);
   }, []);
 
   return (
